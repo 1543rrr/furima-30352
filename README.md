@@ -48,12 +48,14 @@ items table　商品の出品(出品画像,商品名,商品の説明,商品の�
 | Column               | Type       | Options     |
 | --------             | ------     | ----------- |
 | address_id           | integer    | null: false |
-| item_names           | text       | null: false |
+| item_names           | string       | null: false |
 | item_description     | text       | null: false |
-| item_details         | text       | null: false |
+| item_detail_id         | integer       | null: false |
 | regarding_delivery_id| integer    | null: false |
-| selling_prices       | integer    | null: false |
-| category             | integer    | null: false |
+| selling_price_id       | integer    | null: false |
+| category_id             | integer    | null: false |
+| prefecture_id        | integer     | null: false |
+| value                | integer    | null: false |
 
 ### Association
 - has_one :order
@@ -75,13 +77,13 @@ orders table　商品の購入
 addresses table　住所のテーブル
 | Column         | Type     | Options     |
 | --------       | ------   | ----------- |
-| Postal code    | string   | null: false |
-| Prefectures    | string   | null: false |
-| Municipality   | text     | null: false |
+| postal code    | string   | null: false |
+| prefecture_id    | integer   | null: false |
+| municipality   | text     | null: false |
 | address        | string   | null: false |
-| Building name  | text     | null: false |
+| building name  | string     | null: false |
 | number         | string   | null: false |
-
+| oder_id        | references|            |
 ### Association
 
 - belongs to :order
