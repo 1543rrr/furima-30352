@@ -29,7 +29,7 @@ Things you may want to cover:
 
 | Column              | Type   | Options     |
 | --------            | ------ | ----------- |
-| email               | string | null: false |
+| email               | string | null: false,nique: true |
 | encrypted_password  | string | null: false |
 | nickname            | string | null: false |
 | first_name          | string | null: false |
@@ -40,7 +40,7 @@ Things you may want to cover:
 
 ### Association
 - has_many :items
-- has_many orders
+- has_many :orders
   
 
 
@@ -83,7 +83,7 @@ addresses table　住所のテーブル
 | address        | string   | null: false |
 | building_name  | string     |           |
 | phone_number         | string   | null: false |
-| oder           | references| foreign_key :true          |
+| order           | references| foreign_key :true          |
 ### Association
 
 - belongs_to :order
