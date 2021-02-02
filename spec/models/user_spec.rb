@@ -1,12 +1,12 @@
 require 'rails_helper'
 RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
-end
-  describe "ユーザー新規登録" do
+    describe "ユーザー新規登録" do
     before do
       @user = FactoryBot.build(:user)  # Userのインスタンス生成
     end
-    
+    it "nameとemail、passwordとpassword_confirmationが存在すれば登録できること" do
+      expect(@user).to be_valid
+    end
     it " ニックネームが必須であること" do
       @user.nickname = ""  # nicknameの値を空にする
       @user.valid?
