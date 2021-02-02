@@ -1,5 +1,7 @@
 require 'rails_helper'
 RSpec.describe User, type: :model do
+  pending "add some examples to (or delete) #{__FILE__}"
+end
   describe "ユーザー新規登録" do
     before do
       @user = FactoryBot.build(:user)  # Userのインスタンス生成
@@ -25,7 +27,6 @@ RSpec.describe User, type: :model do
     it "メールアドレスは、@を含む必要があること" do
       @user.email = "fjghjbljftyu"
       @user.valid?
-      #binding.pry
       expect(@user.errors.full_messages).to include("Email is invalid")
     end
     it "パスワードが必須であること" do
@@ -41,7 +42,6 @@ RSpec.describe User, type: :model do
     it "パスワードは、半角英数字混合での入力が必須であること" do
       @user.password = "AAA"
       @user.valid?
-      #binding.pry
       expect(@user.errors.full_messages).to include("Password には英字と数字の両方を含めて設定してください")
     end
     it "パスワードは、確認用を含めて2回入力が必須であること" do  #パスワードは、確認用を含めて2回入力すること
@@ -53,14 +53,10 @@ RSpec.describe User, type: :model do
       # @user.password = "sdfiusehfskjf"
       @user.password_confirmation = "uuiudgud"
       @user.valid?
-      #binding.pry
+   
       expect(@user.errors[:password_confirmation]).to include("doesn't match Password")
     end
   end
 end  
 
-#RSpec.describe User, type: :model do
-  #pending "add some examples to (or delete) #{__FILE__}"
-#end
 
-#
