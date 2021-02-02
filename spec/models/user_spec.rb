@@ -1,6 +1,6 @@
 require 'rails_helper'
 RSpec.describe User, type: :model do
-    describe "ユーザー新規登録" do
+  describe "ユーザー新規登録" do
     before do
       @user = FactoryBot.build(:user)  # Userのインスタンス生成
     end
@@ -50,7 +50,7 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include("Password confirmation can't be blank")
     end
     it "パスワードとパスワード（確認用）、値の一致が必須であること" do
-      # @user.password = "sdfiusehfskjf"
+      # @user.password = "sdfiusehfskjf"←この行を含めてもテストは通ることを証明するためにコメントアウトを残しています
       @user.password_confirmation = "uuiudgud"
       @user.valid?
       expect(@user.errors[:password_confirmation]).to include("doesn't match Password")
@@ -81,32 +81,32 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include("Birth day can't be blank")
     end
     it "passwordは数字のみでは登録できないこと" do
-      @user.password = ""
+      @user.password = "1111111"
       @user.valid?
       expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
     end
     it "passwordは全角では登録できないこと" do
-      @user.password = ""
+      @user.password = "ABC"
       @user.valid?
       expect(@user.errors.full_messages).to include("Password can't be blank")
     end
     it "first_nameは漢字・平仮名・カタカナ以外では登録できないこと" do
-      @user.first_name = ""
+      @user.first_name = "test123"
       @user.valid?
       expect(@user.errors.full_messages).to include("First name can't be blank")
     end
     it "last_nameは漢字・平仮名・カタカナ以外では登録できないこと" do
-      @user.last_name = ""
+      @user.last_name = "test123"
       @user.valid?
       expect(@user.errors.full_messages).to include("Last name can't be blank")
     end
     it "first_name_kanaは全角カタカナ以外では登録できないこと" do
-      @user.first_name_kana = ""
+      @user.first_name_kana = "test1234"
       @user.valid?
       expect(@user.errors.full_messages).to include("First name kana can't be blank")
     end
     it "last_name_kanaは全角カタカナ以外では登録できないこと" do
-      @user.last_name_kana = ""
+      @user.last_name_kana = "test1234"
       @user.valid?
       expect(@user.errors.full_messages).to include("Last name kana can't be blank")
     end
