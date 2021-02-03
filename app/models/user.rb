@@ -21,7 +21,7 @@ class User < ApplicationRecord
                 }
   validates :first_name, :last_name,
                 format: {
-                  with: /\A[ぁ-んァ-ン一-龥]/,
+                  with: /\A[ぁ-んァ-ン一-龥々]/,
                   message: "は全角（漢字・ひらがな・カタカナ）での入力が必須であること"
                 }
 
