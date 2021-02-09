@@ -47,15 +47,15 @@ Things you may want to cover:
 items table　商品の出品(出品画像,商品名,商品の説明,商品の詳細,配送について,販売価格)
 | Column               | Type       | Options     |
 | --------             | ------     | ----------- |
-| name           | string       | null: false |
-| description     | text       | null: false |
-| detail_id         | integer       | null: false |
-| regarding_delivery_id| integer    | null: false |
-| selling_price_id       | integer    | null: false |
-| category_id             | integer    | null: false |
-| prefecture_id        | integer     | null: false |
-| value                | integer    | null: false |
-| user               | references    | foreign_key :true |
+| name           | string       | null: false |　商品名
+| description     | text       | null: false |　商品説明
+| detail_id         | integer       | null: false |　商品の状態
+| regarding_delivery_id| integer    | null: false |　発送までの日数
+| selling_price_id       | integer    | null: false |　配送料の負担
+| category_id             | integer    | null: false |　カテゴリー
+| prefecture_id        | integer     | null: false |　発送元の地域
+| value                | integer    | null: false |　商品の金額
+| user               | references    | foreign_key :true |　出品者
 
 ### Association
 - has_one :order
