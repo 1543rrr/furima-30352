@@ -28,40 +28,35 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include("Description can't be blank")
     end
 
-    it 'カテゴリーの情報が必須であること' do
-      @item.category_id = ''
-      @item.valid?
-      expect(@item.errors.full_messages).to include("Category can't be blank")
-    end
-
     it 'カテゴリーのidが０以外であること' do
       @item.category_id = 0
       @item.valid?
       expect(@item.errors.full_messages).to include('Category must be other than 0')
     end
 
-    it '商品の状態についての情報が必須であること' do
-      @item.detail_id = ''
+    it '商品の状態のidが０以外であること' do
+      @item.detail_id = 0
+      # binding.pry
       @item.valid?
-      expect(@item.errors.full_messages).to include("Detail can't be blank")
+      expect(@item.errors.full_messages).to include("Detail must be other than 0")
     end
 
-    it '配送料の負担についての情報が必須であること' do
-      @item.selling_price_id = ''
+    it '配送料の負担のidが０以外であること' do
+      @item.selling_price_id = 0
       @item.valid?
-      expect(@item.errors.full_messages).to include("Selling price can't be blank")
+      expect(@item.errors.full_messages).to include("Selling price must be other than 0")
     end
 
-    it '発送元の地域についての情報が必須であること' do
-      @item.prefecture_id = ''
+    it '発送元の地域のidが０以外であること' do
+      @item.prefecture_id = 0
       @item.valid?
-      expect(@item.errors.full_messages).to include("Prefecture can't be blank")
+      expect(@item.errors.full_messages).to include("Prefecture must be other than 0")
     end
 
-    it '発送までの日数についての情報が必須であること' do
-      @item.regarding_delivery_id = ''
+    it '発送までの日数のidが０以外であること' do
+      @item.regarding_delivery_id = 0
       @item.valid?
-      expect(@item.errors.full_messages).to include("Regarding delivery can't be blank")
+      expect(@item.errors.full_messages).to include("Regarding delivery must be other than 0")
     end
 
     it '価格についての情報が必須であること' do
@@ -76,8 +71,8 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include('Value This site is only for under 300 and over 9,999,999')
     end
 
-    it '価格の範囲が、¥300~¥9,999,999の間であること' do
-      @item.value = 299
+    it '価格の範囲が、¥100,000,00以上では出品できないこと' do
+      @item.value = 10,000,000
       @item.valid?
       expect(@item.errors.full_messages).to include('Value This site is only for under 300 and over 9,999,999')
     end
