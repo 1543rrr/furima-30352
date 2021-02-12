@@ -38,25 +38,25 @@ RSpec.describe Item, type: :model do
       @item.detail_id = 0
       # binding.pry
       @item.valid?
-      expect(@item.errors.full_messages).to include('Detail must be other than 0')
+      expect(@item.errors.full_messages).to include("Detail must be other than 0")
     end
 
     it '配送料の負担のidが０以外であること' do
       @item.selling_price_id = 0
       @item.valid?
-      expect(@item.errors.full_messages).to include('Selling price must be other than 0')
+      expect(@item.errors.full_messages).to include("Selling price must be other than 0")
     end
 
     it '発送元の地域のidが０以外であること' do
       @item.prefecture_id = 0
       @item.valid?
-      expect(@item.errors.full_messages).to include('Prefecture must be other than 0')
+      expect(@item.errors.full_messages).to include("Prefecture must be other than 0")
     end
 
     it '発送までの日数のidが０以外であること' do
       @item.regarding_delivery_id = 0
       @item.valid?
-      expect(@item.errors.full_messages).to include('Regarding delivery must be other than 0')
+      expect(@item.errors.full_messages).to include("Regarding delivery must be other than 0")
     end
 
     it '価格についての情報が必須であること' do
@@ -72,7 +72,7 @@ RSpec.describe Item, type: :model do
     end
 
     it '価格の範囲が、¥100,000,00以上では出品できないこと' do
-      @item.value = 10, 0o00, 0o00
+      @item.value = 10,000,000
       @item.valid?
       expect(@item.errors.full_messages).to include('Value This site is only for under 300 and over 9,999,999')
     end
