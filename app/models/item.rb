@@ -12,4 +12,6 @@ class Item < ApplicationRecord
   # validates :value, numericality: { with: /\A[a-zA-Z]+\z/ }←エラーが発生していて、この記述tを書いたらテストが通ったから。
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :selling_price
+  belongs_to :category
+  belongs_to :detail
 end
