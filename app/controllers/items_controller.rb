@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
-
+  before_action :authenticate_user!, only: [:new, :create, :edit]
+  before_action :redirect_to_show, only:[:edit]
   # before_action :set_item, only: [:new, :create]
 
   def index
@@ -38,7 +38,6 @@ class ItemsController < ApplicationController
       @item = Item.find(params[:id])
   end
   
-
   private
 
   def item_params
@@ -46,5 +45,9 @@ class ItemsController < ApplicationController
                                  :category_id, :prefecture_id, :value, :user).merge(user_id: current_user.id)
   end
 
+  def redirect_to_show
+    @item = Item.find(params[:id])
+    return redirect_to root_path if current_user.id != @item.user.id
+  end
   
 end
