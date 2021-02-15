@@ -58,15 +58,15 @@
         </tr>
         <tr>
           <th class="detail-item">配送料の負担</th>
-          <td class="detail-value"><%= @item.selling_price_id %></td>
+          <td class="detail-value"><%= @item.selling_price.name %></td>
         </tr>
         <tr>
           <th class="detail-item">発送元の地域</th>
-          <td class="detail-value"><%= @item.prefecture_id %></td>
+          <td class="detail-value"><%= @item.prefecture.name %></td>
         </tr>
         <tr>
           <th class="detail-item">発送日の目安</th>
-          <td class="detail-value"><%= @item.regarding_delivery_id %></td>
+          <td class="detail-value"><%= @item.regarding_delivery.name %></td>
         </tr>
       </tbody>
     </table>
@@ -106,7 +106,7 @@
     </a>
   </div>
   <%# 詳細ページで表示されている商品のカテゴリー名を表示しましょう %>
-  <a href=“#” class=‘another-item’><%= @item.category_id %>をもっと見る</a>
+  <a href=“#” class=‘another-item’><%= @item.category.name %>をもっと見る</a>
   <%# //詳細ページで表示されている商品のカテゴリー名を表示しましょう %>
 </div>
 

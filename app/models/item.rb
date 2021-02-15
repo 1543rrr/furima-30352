@@ -14,4 +14,7 @@ class Item < ApplicationRecord
   belongs_to :selling_price
   belongs_to :category
   belongs_to :detail
+  belongs_to :prefecture
+  belongs_to :regarding_delivery
+  
 end
