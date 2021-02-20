@@ -1,15 +1,18 @@
 class AddressOrder
   include ActiveModel::Model
-  attr_accessor :item, :user, :postal_code, :prefecture_id, :municipality, :address, :address, :phone_number, :order
+  attr_accessor :item_id, :user_id, :postal_code, :prefecture_id, :municipality, :building_name, :address, :phone_number, :token
 
-  validates :postal_code, :prefecture_id, :detail_id, :regarding_delivery_id, :selling_price_id, :category_id, :prefecture_id,
-            :value, presence: true
-  validates :address, format: { with: /-/}
-  validates :phone_number, format: { with: /^0\d{,10}$/}
+  with_options presence: true do
+    validates :address, :prefecture_id, :municipality, :user_id, :item_id
+    validates :postal_code, format: { with: /-/}
+    validates :phone_number, format: { with: /\A\d{10,11}\z/}
+  end
+    validates :prefecture_id, numericality: { other_than: 0 }
 
   def save
-    order = Order.create(user_id: user, item_id: item)
-    Address.create(postal_code_id: postal_code, prefecture_id: prefecture_id, municipality_id: municipality, address_id: address, building_name_id: building_name, phone_number_id: phone_number, order_id: order.id)
+    #binding.pry→保存できているか確かめたい為
+    order = Order.create(user_id: user_id, item_id: item_id)
+    Address.create(postal_code: postal_code, prefecture_id: prefecture_id, municipality: municipality, address: address, building_name: building_name, phone_number: phone_number, order_id: order.id)
   end
 end
 
