@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
     if @address_order.valid?
       @address_order.save
      Payjp.api_key = ENV["PAYJP_SECRET_KEY"] # 環境変数を読み込む
-    #  binding.pry
+    
      Payjp::Charge.create(
         amount: @item.value,
         card: oreder_params[:token],
@@ -20,7 +20,7 @@ class OrdersController < ApplicationController
       )
       redirect_to root_path
     else
-      set_item
+      
       render :index
     end
    
