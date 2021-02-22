@@ -19,7 +19,7 @@ const pay = () => {
     Payjp.createToken(card, (status, response) => {
       if (status === 200) {
         const token = response.id;
-        console.log(token)
+        // console.log(token)
         const renderDom = document.getElementById("charge-form");   //idを元に要素を取得
         const tokenObj = `<input value=${token} name='address_order[token]' type="hidden">`;   //paramsの中にトークンを含める
         renderDom.insertAdjacentHTML("beforeend", tokenObj);  //フォームの一番最後に要素を追加

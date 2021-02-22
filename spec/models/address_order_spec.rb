@@ -12,6 +12,9 @@ RSpec.describe :address_order, type: :model do
       it '全て正常' do
         expect(@item).to be_valid
       end
+      it '建物名がなくても登録が出来る時' do
+        expect(@item).to be_valid
+      end
     end
     
     context '商品が購入できない時' do
@@ -66,7 +69,24 @@ RSpec.describe :address_order, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Item can't be blank")
       end    
-     
+      it 'phone_numberがないと登録出来ない' do
+        @item.phone_number = nil        
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Phone number can't be blank")
+      end 
+      it 'postal_codeがないと登録出来ない' do
+        @item.postal_code = nil        
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Postal code can't be blank")
+      end
+      it 'PAYJP_PUBLIC_KEYがないと登録出来ない' do
+        @item.token = nil        
+        @item.valid?
+        binding.pry
+        expect(@item.errors.full_messages).to include("")
+      end         
+             
+    
     end
   end
 end
