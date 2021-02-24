@@ -13,6 +13,7 @@ RSpec.describe :address_order, type: :model do
         expect(@item).to be_valid
       end
       it '建物名がなくても登録が出来る時' do
+        @item.building_name = nil
         expect(@item).to be_valid
       end
     end
@@ -82,8 +83,7 @@ RSpec.describe :address_order, type: :model do
       it 'PAYJP_PUBLIC_KEYがないと登録出来ない' do
         @item.token = nil        
         @item.valid?
-        binding.pry
-        expect(@item.errors.full_messages).to include("")
+        expect(@item.errors.full_messages).to include("Token can't be blank")
       end         
              
     
