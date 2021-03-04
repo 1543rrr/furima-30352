@@ -87,4 +87,3 @@ addresses table　住所のテーブル
 ### Association
 
 - belongs_to :order
-
